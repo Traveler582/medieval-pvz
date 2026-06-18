@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bys8b6ujx0swa"]
+
+[ext_resource type="Script" uid="uid://c6mk248fp82va" path="res://scripts/enemies/enemy_knight.gd" id="1_6xk8f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8e3ao"]
+
+[node name="Enemy" type="Node2D" unique_id=556555792]
+script = ExtResource("1_6xk8f")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1875913274]
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+color = Color(0.6156863, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=52651537]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1491222755]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_8e3ao")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=591700375]
+offset_right = 4.0
+offset_bottom = 27.0

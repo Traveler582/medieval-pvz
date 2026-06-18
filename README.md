@@ -12,7 +12,7 @@ Players place defensive units along lanes to stop waves of medieval enemies from
 
 ---
 
-## Engine
+## Game Engine
 
 - [Godot 4](https://godotengine.org/) (GDScript)
 

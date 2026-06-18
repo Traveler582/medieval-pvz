@@ -6,6 +6,9 @@ const CELL_SIZE = 90
 
 var grid_origin = Vector2(200,9)
 var hovered_cell = Vector2i(-1,-1)
+var selected_cell = Vector2i(-1, -1)
+
+signal cell_selected(cell: Vector2i)
 
 func _draw():
 	for row in ROWS:
@@ -17,6 +20,8 @@ func _draw():
 			draw_rect(rect, Color.WHITE, false)
 			if Vector2i(col,row) == hovered_cell:
 				draw_rect(rect, Color(1, 1, 0, 0.3), true)
+			if Vector2i(col, row) == selected_cell:
+				draw_rect(rect, Color(0, 1, 0, 0.3), true)
 func _process(_delta):
 	var mouse_pos = get_local_mouse_position()
 	var cell = world_to_grid(mouse_pos)
@@ -35,3 +40,12 @@ func world_to_grid(pos: Vector2) -> Vector2i:
 
 func is_valid_cell(cell: Vector2i) -> bool:
 	return cell.x >= 0 and cell.x < COLS and cell.y >= 0 and cell.y < ROWS
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			var cell = world_to_grid(get_local_mouse_position())
+			if is_valid_cell(cell):
+				selected_cell = cell
+				queue_redraw()
+				emit_signal("cell_selected", cell)

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cq0j5pomjo1gb"]
+
+[ext_resource type="Script" uid="uid://bc6l5yu3jxkad" path="res://scripts/units/knight.gd" id="1_c8pb6"]
+[ext_resource type="Resource" uid="uid://c7ky0iyqgdtma" path="res://resources/units/knight.tres" id="2_8k1n4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ypb7"]
+size = Vector2(47, 20)
+
+[node name="Knight" type="Node2D" unique_id=1918362713]
+script = ExtResource("1_c8pb6")
+data = ExtResource("2_8k1n4")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=540901142]
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+color = Color(0.15406221, 0.24613917, 0.79287314, 1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1794259529]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1572920140]
+visible = false
+position = Vector2(13.5, 0)
+shape = SubResource("RectangleShape2D_4ypb7")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=765098025]
+visible = false
+offset_right = 4.0
+offset_bottom = 27.0

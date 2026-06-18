@@ -41,9 +41,6 @@ res://
 ### Running the Project
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-   ```
 2. Open Godot 4
 3. Click **Import** and select the `project.godot` file from the cloned folder
 4. Hit **Play** (F5) to run

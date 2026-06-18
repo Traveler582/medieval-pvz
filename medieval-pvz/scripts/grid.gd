@@ -7,7 +7,7 @@ const CELL_SIZE = 90
 var grid_origin = Vector2(200,9)
 var hovered_cell = Vector2i(-1,-1)
 var selected_cell = Vector2i(-1, -1)
-
+var occupied_cells: Dictionary = {}
 signal cell_selected(cell: Vector2i)
 
 func _draw():
@@ -38,8 +38,17 @@ func world_to_grid(pos: Vector2) -> Vector2i:
 	var relative = pos - grid_origin
 	return Vector2i(int(floor(relative.x / CELL_SIZE)), int(floor(relative.y / CELL_SIZE)))
 
+func grid_to_world(cell: Vector2i) -> Vector2:
+	return grid_origin + Vector2(cell.x * CELL_SIZE + CELL_SIZE/2, cell.y * CELL_SIZE + CELL_SIZE / 2)
+
 func is_valid_cell(cell: Vector2i) -> bool:
 	return cell.x >= 0 and cell.x < COLS and cell.y >= 0 and cell.y < ROWS
+
+func is_cell_occupied(cell: Vector2i) -> bool:
+	return occupied_cells.has(cell)
+
+func occupy_cell(cell: Vector2i, unit: Node) -> void:
+	occupied_cells[cell] = unit
 
 func _input(event):
 	if event is InputEventMouseButton:

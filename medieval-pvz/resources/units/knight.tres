@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://c7ky0iyqgdtma"]
+
+[ext_resource type="Script" uid="uid://dupi3dabj71cq" path="res://resources/units/unit_data.gd" id="1_1hfx2"]
+
+[resource]
+script = ExtResource("1_1hfx2")
+cost = 100
+health = 5
+damage = 3
+metadata/_custom_type_script = "uid://dupi3dabj71cq"

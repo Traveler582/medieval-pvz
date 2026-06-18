@@ -1,6 +1,6 @@
 # [Game Name TBD]
 
-A medieval lane-defense game inspired by Plants vs. Zombies. Deploy units like Knights, Archers, and more to defend your castle against waves of enemies — spending Gold instead of Sun.
+A medieval lane-defense game inspired by Plants vs. Zombies. Deploy units like Knights, Archers, and more to defend your castle against waves of enemies — spending Gold to fund your defenses.
 
 > **This game is currently in active development.** Expect frequent changes.
 

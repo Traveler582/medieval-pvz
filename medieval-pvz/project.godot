@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GoldManager="*uid://dco4y6xe1ibx1"
+WaveManager="*uid://bsutlxsqn8kl7"
 
 [dotnet]
 

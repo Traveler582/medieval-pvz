@@ -58,3 +58,10 @@ func _input(event):
 				selected_cell = cell
 				queue_redraw()
 				emit_signal("cell_selected", cell)
+
+func get_enemy_in_cell(cell: Vector2i) -> Node:
+	if occupied_cells.has(cell):
+		var occupant = occupied_cells[cell]
+		if occupant is EnemyBase:
+			return occupant
+	return null

@@ -10,6 +10,14 @@ func _ready():
 	GoldManager.gold_changed.connect(_on_gold_changed)
 	gold_label.text = "Gold: " + str(GoldManager.gold)
 	grid.cell_selected.connect(_on_cell_selected)
+	WaveManager.initialize(grid, self)
+	
+	#<LK>: Temporary, replaced with random selection later
+	WaveManager.start_wave([
+	{"lane": 0},
+	{"lane": 2},
+	{"lane": 4}
+])
 
 func _on_gold_changed(new_amount: int) -> void:
 	gold_label.text = "Gold: " + str(new_amount)
@@ -25,5 +33,7 @@ func place_unit(cell: Vector2i) -> void:
 	var unit_scene: PackedScene = preload("res://scenes/units/knight.tscn")
 	var unit = unit_scene.instantiate()
 	unit.position = grid.grid_to_world(cell)
+	unit.grid_cell = cell
+	unit.grid_ref = grid
 	add_child(unit)
 	grid.occupy_cell(cell, unit)

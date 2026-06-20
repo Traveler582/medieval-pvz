@@ -21,14 +21,18 @@ func _ready():
 
 func _process(delta):
 	if is_fighting:
-		if current_target and is_instance_valid(current_target):
+		overlapping_units = overlapping_units.filter(func(u): return is_instance_valid(u))
+		if overlapping_units.size() > 0:
+			var target = overlapping_units[0]
+			for u in overlapping_units:
+				if u.position.x > target.position.x:
+					target = u
 			attack_timer += delta
 			if attack_timer >= 1.0:
 				attack_timer = 0.0
-				current_target.take_damage(data.damage)
+				target.take_damage(data.damage)
 		else:
 			is_fighting = false
-			current_target = null
 	else:
 		position.x -= data.speed * delta
 		update_grid_cell()
@@ -44,20 +48,19 @@ func update_grid_cell() -> void:
 		if grid_ref.is_valid_cell(new_cell):
 			grid_ref.occupy_cell(new_cell, self)
 
+var overlapping_units: Array = []
 func _on_area_entered(other_area: Area2D) -> void:
-	print("Area entered: ", other_area)
 	var parent = other_area.get_parent()
-	print("Parent: ", parent, " | Is Unit: ", parent is Unit)
 	if parent is Unit:
+		overlapping_units.append(parent)
 		is_fighting = true
-		current_target = parent
 
 func _on_area_exited(other_area: Area2D) -> void:
-	print("Area exited: ", other_area)
 	var parent = other_area.get_parent()
-	if parent == current_target:
+	if parent in overlapping_units:
+		overlapping_units.erase(parent)
+	if overlapping_units.is_empty():
 		is_fighting = false
-		current_target = null
 func take_damage(amount: int) -> void:
 	current_health -= amount
 	if current_health <= 0:

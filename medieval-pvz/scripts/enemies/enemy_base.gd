@@ -86,4 +86,11 @@ func take_damage(amount: int) -> void:
 func die() -> void:
 	if grid_ref and grid_ref.is_valid_cell(current_cell):
 		grid_ref.free_enemy_cell(current_cell)
+	WaveManager.on_enemy_died()
+	queue_free()
+
+func reach_castle() -> void:
+	if grid_ref and grid_ref.is_valid_cell(current_cell):
+		grid_ref.free_enemy_cell(current_cell)
+	WaveManager.on_enemy_died()
 	queue_free()

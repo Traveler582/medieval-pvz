@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_8pldo")
-health = 500
+health = 5
 metadata/_custom_type_script = "uid://h85s5gojr3q0"

@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var gold_label: Label = $gold_label
 @onready var grid: Node2D = $Grid
+@onready var castle: Node2D = $Castle
 # TODO <LK>: Change this to have a different value based on the unit the player has selected
 #      at the current moment
 var selected_unit_data: UnitData = preload("res://resources/units/knight.tres")
@@ -11,13 +12,13 @@ func _ready():
 	gold_label.text = "Gold: " + str(GoldManager.gold)
 	grid.cell_selected.connect(_on_cell_selected)
 	WaveManager.initialize(grid, self)
-	
-	#<LK>: Temporary, replaced with random selection later
-	WaveManager.start_wave([
-	{"lane": 0},
-	{"lane": 2},
-	{"lane": 4}
-])
+	WaveManager.endless_mode = true
+	WaveManager.start_wave(WaveManager.generate_wave(5))
+	castle.castle_reached.connect(_on_castle_reached)
+
+func _on_castle_reached() -> void:
+	print("GAME OVER")
+	get_tree().paused = true
 
 func _on_gold_changed(new_amount: int) -> void:
 	gold_label.text = "Gold: " + str(new_amount)

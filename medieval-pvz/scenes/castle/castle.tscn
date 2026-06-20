@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://p8fk0kpnxecj"]
+
+[ext_resource type="Script" uid="uid://dx4wc0adwgs8c" path="res://scripts/castle/castle.gd" id="1_kks2f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1tld"]
+size = Vector2(45, 661)
+
+[node name="Castle" type="Node2D" unique_id=1725258839]
+script = ExtResource("1_kks2f")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1508358173]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=595504327]
+position = Vector2(12.5, 320.5)
+shape = SubResource("RectangleShape2D_h1tld")

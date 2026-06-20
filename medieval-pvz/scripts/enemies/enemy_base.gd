@@ -3,7 +3,7 @@ class_name EnemyBase
 
 @export var data: EnemyData
 @onready var area: Area2D = $Area2D
-
+@onready var health_bar: ProgressBar = $ProgressBar
 var current_health: int
 var lane: int = 0
 var grid_ref: Node
@@ -16,9 +16,10 @@ var attack_timer: float = 0.0
 func _ready():
 	if data:
 		current_health = data.health
+		health_bar.max_value = data.health
+		health_bar.value = current_health
 	area.area_entered.connect(_on_area_entered)
 	area.area_exited.connect(_on_area_exited)
-
 func _process(delta):
 	if is_fighting:
 		overlapping_units = overlapping_units.filter(func(u): return is_instance_valid(u))
@@ -43,10 +44,10 @@ func update_grid_cell() -> void:
 	var new_cell = grid_ref.world_to_grid(position)
 	if new_cell != current_cell:
 		if grid_ref.is_valid_cell(current_cell):
-			grid_ref.occupied_cells.erase(current_cell)
+			grid_ref.free_enemy_cell(current_cell)
 		current_cell = new_cell
 		if grid_ref.is_valid_cell(new_cell):
-			grid_ref.occupy_cell(new_cell, self)
+			grid_ref.occupy_enemy_cell(new_cell, self)
 
 var overlapping_units: Array = []
 func _on_area_entered(other_area: Area2D) -> void:
@@ -61,12 +62,14 @@ func _on_area_exited(other_area: Area2D) -> void:
 		overlapping_units.erase(parent)
 	if overlapping_units.is_empty():
 		is_fighting = false
+
 func take_damage(amount: int) -> void:
 	current_health -= amount
+	health_bar.value = current_health
 	if current_health <= 0:
 		die()
 
 func die() -> void:
 	if grid_ref and grid_ref.is_valid_cell(current_cell):
-		grid_ref.occupied_cells.erase(current_cell)
+		grid_ref.free_enemy_cell(current_cell)
 	queue_free()

@@ -7,8 +7,10 @@ const CELL_SIZE = 90
 var grid_origin = Vector2(200,9)
 var hovered_cell = Vector2i(-1,-1)
 var selected_cell = Vector2i(-1, -1)
-var occupied_cells: Dictionary = {}
 signal cell_selected(cell: Vector2i)
+
+var unit_cells: Dictionary = {}
+var enemy_cells: Dictionary = {}
 
 func _draw():
 	for row in ROWS:
@@ -22,6 +24,7 @@ func _draw():
 				draw_rect(rect, Color(1, 1, 0, 0.3), true)
 			if Vector2i(col, row) == selected_cell:
 				draw_rect(rect, Color(0, 1, 0, 0.3), true)
+
 func _process(_delta):
 	var mouse_pos = get_local_mouse_position()
 	var cell = world_to_grid(mouse_pos)
@@ -44,12 +47,6 @@ func grid_to_world(cell: Vector2i) -> Vector2:
 func is_valid_cell(cell: Vector2i) -> bool:
 	return cell.x >= 0 and cell.x < COLS and cell.y >= 0 and cell.y < ROWS
 
-func is_cell_occupied(cell: Vector2i) -> bool:
-	return occupied_cells.has(cell)
-
-func occupy_cell(cell: Vector2i, unit: Node) -> void:
-	occupied_cells[cell] = unit
-
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -59,9 +56,27 @@ func _input(event):
 				queue_redraw()
 				emit_signal("cell_selected", cell)
 
+func is_cell_occupied_by_unit(cell: Vector2i) -> bool:
+	return unit_cells.has(cell)
+
+func occupy_unit_cell(cell: Vector2i, unit: Node) -> void:
+	unit_cells[cell] = unit
+
+func free_unit_cell(cell: Vector2i) -> void:
+	unit_cells.erase(cell)
+
+func get_unit_in_cell(cell: Vector2i) -> Node:
+	if unit_cells.has(cell):
+		return unit_cells[cell]
+	return null
+
+func occupy_enemy_cell(cell: Vector2i, enemy: Node) -> void:
+	enemy_cells[cell] = enemy
+
+func free_enemy_cell(cell: Vector2i) -> void:
+	enemy_cells.erase(cell)
+
 func get_enemy_in_cell(cell: Vector2i) -> Node:
-	if occupied_cells.has(cell):
-		var occupant = occupied_cells[cell]
-		if occupant is EnemyBase:
-			return occupant
+	if enemy_cells.has(cell):
+		return enemy_cells[cell]
 	return null

@@ -24,7 +24,7 @@ func _on_gold_changed(new_amount: int) -> void:
 
 func _on_cell_selected(cell: Vector2i) -> void:
 	#<LK>: There's already a unit in that cell!
-	if grid.is_cell_occupied(cell):
+	if grid.is_cell_occupied_by_unit(cell):
 		return
 	if GoldManager.spend_gold(selected_unit_data.cost):
 		place_unit(cell)
@@ -36,4 +36,4 @@ func place_unit(cell: Vector2i) -> void:
 	unit.grid_cell = cell
 	unit.grid_ref = grid
 	add_child(unit)
-	grid.occupy_cell(cell, unit)
+	grid.occupy_unit_cell(cell, unit)

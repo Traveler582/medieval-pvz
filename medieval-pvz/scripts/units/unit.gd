@@ -38,5 +38,5 @@ func take_damage(amount: int) -> void:
 
 func die() -> void:
 	if grid_ref and grid_ref.is_valid_cell(grid_cell):
-		grid_ref.occupied_cells.erase(grid_cell)
+		grid_ref.free_unit_cell(grid_cell)
 	queue_free()

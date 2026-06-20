@@ -14,7 +14,7 @@ func _ready():
 	WaveManager.initialize(grid, self)
 	WaveManager.endless_mode = true
 	WaveManager.start_wave(WaveManager.generate_wave(5))
-	castle.castle_reached.connect(_on_castle_reached)
+	#castle.castle_reached.connect(_on_castle_reached)
 
 func _on_castle_reached() -> void:
 	print("GAME OVER")

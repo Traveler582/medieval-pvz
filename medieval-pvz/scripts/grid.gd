@@ -28,6 +28,7 @@ func _draw():
 func _process(_delta):
 	var mouse_pos = get_local_mouse_position()
 	var cell = world_to_grid(mouse_pos)
+	
 	if is_valid_cell(cell):
 		if cell != hovered_cell:
 			hovered_cell = cell

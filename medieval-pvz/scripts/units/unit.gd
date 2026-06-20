@@ -18,7 +18,13 @@ func _ready():
 		health_bar.value = current_health
 
 func _process(delta):
-	if not grid_ref:
+	if not grid_ref: return
+	var same_cell_enemy = grid_ref.get_enemy_in_cell(grid_cell)
+	if same_cell_enemy and is_instance_valid(same_cell_enemy):
+		attack_timer += delta
+		if attack_timer >= 1.0 / data.attack_speed:
+			attack_timer = 0.0
+			same_cell_enemy.take_damage(data.damage)
 		return
 	
 	var target_cell = grid_cell + Vector2i(1, 0)

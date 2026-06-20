@@ -11,7 +11,8 @@ var current_cell: Vector2i = Vector2i(-1, -1)
 
 var is_fighting: bool = false
 var current_target: Node = null
-var attack_timer: float = 0.0
+var same_cell_attack_timer: float = 0.0
+var adjacent_attack_timer: float = 0.0
 
 func _ready():
 	if data:
@@ -20,7 +21,20 @@ func _ready():
 		health_bar.value = current_health
 	area.area_entered.connect(_on_area_entered)
 	area.area_exited.connect(_on_area_exited)
+
 func _process(delta):
+	if not grid_ref:
+		position.x -= data.speed * delta
+		return
+	
+	var same_cell_unit = grid_ref.get_unit_in_cell(current_cell)
+	if same_cell_unit and is_instance_valid(same_cell_unit):
+		same_cell_attack_timer += delta
+		if same_cell_attack_timer >= 1.0:
+			same_cell_attack_timer = 0.0
+			same_cell_unit.take_damage(data.damage)
+		return
+	
 	if is_fighting:
 		overlapping_units = overlapping_units.filter(func(u): return is_instance_valid(u))
 		if overlapping_units.size() > 0:
@@ -28,9 +42,9 @@ func _process(delta):
 			for u in overlapping_units:
 				if u.position.x > target.position.x:
 					target = u
-			attack_timer += delta
-			if attack_timer >= 1.0:
-				attack_timer = 0.0
+			adjacent_attack_timer += delta
+			if adjacent_attack_timer >= 1.0:
+				adjacent_attack_timer = 0.0
 				target.take_damage(data.damage)
 		else:
 			is_fighting = false

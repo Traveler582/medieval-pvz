@@ -38,6 +38,8 @@ func _process(delta):
 	
 	var same_cell_unit = grid_ref.get_unit_in_cell(current_cell)
 	if same_cell_unit and is_instance_valid(same_cell_unit):
+		if sprite.animation != "idle":
+			sprite.play("idle")
 		same_cell_attack_timer += delta
 		if same_cell_attack_timer >= 1.0:
 			same_cell_attack_timer = 0.0
@@ -47,6 +49,8 @@ func _process(delta):
 	if is_fighting:
 		overlapping_units = overlapping_units.filter(func(u): return is_instance_valid(u))
 		if overlapping_units.size() > 0:
+			if sprite.animation != "idle":
+				sprite.play("idle")
 			var target = overlapping_units[0]
 			for u in overlapping_units:
 				if u.position.x > target.position.x:
@@ -60,8 +64,8 @@ func _process(delta):
 	else:
 		position.x -= data.speed * delta
 		update_grid_cell()
-		if sprite.animation != "idle":
-			sprite.play("idle")
+		if sprite.animation != "walk":
+			sprite.play("walk")
 
 func start_attack(target: Node) -> void:
 	is_attacking = true

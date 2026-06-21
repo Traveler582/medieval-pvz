@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dvh2h0b2x74j3" path="res://assets/sprites/units/knight/Human_Soldier_Sword_Shield_Death-Sheet.png" id="5_n7575"]
 [ext_resource type="Texture2D" uid="uid://rq0tsf27a2d7" path="res://assets/sprites/units/knight/Human_Soldier_Sword_Shield_Idle-Sheet.png" id="6_qch6t"]
 [ext_resource type="Texture2D" uid="uid://ceri5gm5qsfm0" path="res://assets/sprites/units/knight/Human_Soldier_Sword_Shield_Hurt-Sheet.png" id="7_n7575"]
+[ext_resource type="Texture2D" uid="uid://ckw7tk7tboopo" path="res://assets/sprites/units/knight/Human_Soldier_Sword_Shield_Walk-Sheet.png" id="9_qch6t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n7575"]
 shader = ExtResource("3_jt03m")
@@ -184,6 +185,38 @@ region = Rect2(0, 128, 48, 32)
 atlas = ExtResource("6_qch6t")
 region = Rect2(0, 160, 48, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsvp5"]
+atlas = ExtResource("9_qch6t")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv2ah"]
+atlas = ExtResource("9_qch6t")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crryk"]
+atlas = ExtResource("9_qch6t")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whns1"]
+atlas = ExtResource("9_qch6t")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nai4k"]
+atlas = ExtResource("9_qch6t")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uequj"]
+atlas = ExtResource("9_qch6t")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il2t1"]
+atlas = ExtResource("9_qch6t")
+region = Rect2(0, 192, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjlvt"]
+atlas = ExtResource("9_qch6t")
+region = Rect2(0, 224, 48, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_lirnq"]
 animations = [{
 "frames": [{
@@ -318,6 +351,35 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsvp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv2ah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crryk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whns1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nai4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uequj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il2t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjlvt")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8e3ao"]
@@ -329,22 +391,21 @@ data = ExtResource("2_8e3ao")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1485715955]
 material = SubResource("ShaderMaterial_n7575")
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_lirnq")
-animation = &"idle"
-frame = 2
-frame_progress = 0.045283332
+animation = &"walk"
+frame = 5
+frame_progress = 0.4294676
 
 [node name="Area2D" type="Area2D" parent="." unique_id=52651537]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1491222755]
-visible = false
 position = Vector2(-9.999998, 3.499998)
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_8e3ao")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=591700375]
-visible = false
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = -1.0
+offset_top = 27.0
+offset_right = 3.0
+offset_bottom = 54.0

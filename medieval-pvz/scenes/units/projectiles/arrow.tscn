@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cqkeuygsw4xp2"]
+
+[ext_resource type="Script" uid="uid://cx8bgydkw3pd1" path="res://scripts/units/projectiles/arrow.gd" id="1_pbyym"]
+
+[node name="Arrow" type="Node2D" unique_id=1114541354]
+script = ExtResource("1_pbyym")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=900578908]
+offset_right = 40.0
+offset_bottom = 4.0

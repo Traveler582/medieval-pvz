@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cj7daalehiibm"]
+
+[ext_resource type="PackedScene" uid="uid://vryns5fg1cuf" path="res://scenes/ui/unit_button.tscn" id="1_oe1yp"]
+[ext_resource type="Script" uid="uid://ddg5htsg87tlp" path="res://scripts/ui/unit_selector.gd" id="1_q6o2m"]
+[ext_resource type="Resource" uid="uid://cpdrt83c12ltx" path="res://resources/units/archer.tres" id="3_c2u1c"]
+
+[node name="UnitSelector" type="Control" unique_id=1929263082]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q6o2m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=714690369]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 100.0
+
+[node name="ArcherButton" parent="HBoxContainer" unique_id=1569293649 instance=ExtResource("1_oe1yp")]
+layout_mode = 2
+unit_data = ExtResource("3_c2u1c")
+
+[node name="KnightButton" parent="HBoxContainer" unique_id=1299772144 instance=ExtResource("1_oe1yp")]
+layout_mode = 2

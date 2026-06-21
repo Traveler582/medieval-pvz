@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ht6jyld44kwt"]
+
+[ext_resource type="Script" uid="uid://csqyww0bbl8xh" path="res://scripts/units/archer.gd" id="1_5ijr0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p10bi"]
+
+[node name="Archer" type="Node2D" unique_id=779808540]
+script = ExtResource("1_5ijr0")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1285244713]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=431554913]
+shape = SubResource("RectangleShape2D_p10bi")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1169281662]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=482637962]
+custom_minimum_size = Vector2(90, 90)
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+color = Color(0, 0.40392157, 0, 1)

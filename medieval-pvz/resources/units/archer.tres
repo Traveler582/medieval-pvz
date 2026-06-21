@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://cpdrt83c12ltx"]
+
+[ext_resource type="PackedScene" uid="uid://cqkeuygsw4xp2" path="res://scenes/units/projectiles/arrow.tscn" id="1_ln5bf"]
+[ext_resource type="Script" uid="uid://dupi3dabj71cq" path="res://resources/units/unit_data.gd" id="1_nar3q"]
+
+[resource]
+script = ExtResource("1_nar3q")
+unit_name = "archer"
+cost = 150
+health = 2
+damage = 1
+attack_range = 3
+scene_path = "res://scenes/units/archer.tscn"
+projectile_scene = ExtResource("1_ln5bf")
+metadata/_custom_type_script = "uid://dupi3dabj71cq"

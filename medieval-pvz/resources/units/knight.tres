@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_1hfx2")
+unit_name = "knight"
 cost = 10
 health = 5
 damage = 3
+scene_path = "res://scenes/units/knight.tscn"
 metadata/_custom_type_script = "uid://dupi3dabj71cq"

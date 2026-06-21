@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://nmybykohms1y" path="res://scenes/grid/grid.tscn" id="1_377w7"]
 [ext_resource type="Script" uid="uid://c1jpt8ufgkviu" path="res://scenes/levels/level.gd" id="1_bovvr"]
 [ext_resource type="PackedScene" uid="uid://p8fk0kpnxecj" path="res://scenes/castle/castle.tscn" id="3_b2cq8"]
+[ext_resource type="PackedScene" uid="uid://cj7daalehiibm" path="res://scenes/ui/unit_selector.tscn" id="4_xb4v1"]
 
 [node name="Level" type="Node2D" unique_id=1118356259]
 script = ExtResource("1_bovvr")
@@ -15,3 +16,9 @@ offset_bottom = 23.0
 
 [node name="Castle" parent="." unique_id=1725258839 instance=ExtResource("3_b2cq8")]
 position = Vector2(27, 6)
+
+[node name="UnitSelector" parent="." unique_id=1929263082 instance=ExtResource("4_xb4v1")]
+offset_left = 876.0
+offset_top = 133.0
+offset_right = 876.0
+offset_bottom = 133.0

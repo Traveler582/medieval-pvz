@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://vryns5fg1cuf"]
+
+[ext_resource type="Script" uid="uid://8eqs3b3k3q2o" path="res://scripts/ui/unit_button.gd" id="1_44ypy"]
+[ext_resource type="Resource" uid="uid://c7ky0iyqgdtma" path="res://resources/units/knight.tres" id="2_r7ccp"]
+
+[node name="UnitButton" type="Button" unique_id=1569293649]
+custom_minimum_size = Vector2(80, 80)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1072.0
+offset_bottom = -568.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_44ypy")
+unit_data = ExtResource("2_r7ccp")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=753062213]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="." unique_id=1218305640]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

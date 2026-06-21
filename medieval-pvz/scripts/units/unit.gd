@@ -21,7 +21,7 @@ func _ready():
 	sprite.play("idle")
 
 func _process(delta):
-	if is_dead or not grid_ref or is_attacking: 
+	if is_dead or not grid_ref: 
 		return
 	
 	var same_cell_enemy = grid_ref.get_enemy_in_cell(grid_cell)
@@ -31,10 +31,7 @@ func _process(delta):
 			attack_timer = 0.0
 			start_attack(same_cell_enemy)
 		return
-	
-	var target_cell = grid_cell + Vector2i(1, 0)
-	current_target = grid_ref.get_enemy_in_cell(target_cell)
-	
+	current_target = find_target_in_range()
 	if current_target:
 		attack_timer += delta
 		if attack_timer >= 1.0 / data.attack_speed:
@@ -43,6 +40,14 @@ func _process(delta):
 	else:
 		if sprite.animation != "idle":
 			sprite.play("idle")
+
+func find_target_in_range() -> Node:
+	for i in range(1, data.attack_range + 1):
+		var check_cell = grid_cell + Vector2i(i, 0)
+		var enemy = grid_ref.get_enemy_in_cell(check_cell)
+		if enemy and is_instance_valid(enemy):
+			return enemy
+	return null
 
 func start_attack(target: Node) -> void:
 	is_attacking = true

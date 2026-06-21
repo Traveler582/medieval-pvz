@@ -383,7 +383,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8e3ao"]
-size = Vector2(18.399998, 8.599999)
+size = Vector2(16, 8.599999)
 
 [node name="Enemy" type="Node2D" unique_id=556555792]
 script = ExtResource("1_6xk8f")
@@ -400,7 +400,7 @@ frame_progress = 0.4294676
 [node name="Area2D" type="Area2D" parent="." unique_id=52651537]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1491222755]
-position = Vector2(-9.999998, 3.499998)
+position = Vector2(-18, 3.499998)
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_8e3ao")
 
